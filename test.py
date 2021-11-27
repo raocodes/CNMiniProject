@@ -1,17 +1,10 @@
 import pyshark
+
 cap = pyshark.FileCapture(
     '200722_win_scale_examples_anon.pcapng', display_filter='tcp')
 
-# Flag wise
-# Packet wise - Flag - Source - Dest - ACK - SYN
-
 count = 1
 for packet in cap:
-    # print(packet)
-    # for things in dir(packet['tcp']):
-    #     if 'flag' in things:
-    #         print(things)
-
     currflag = list()
     tcpflags = {
         'FIN': packet['tcp'].flags_fin,
@@ -22,11 +15,15 @@ for packet in cap:
         'URG': packet['tcp'].flags_urg
     }
 
-    # print(tcpflags.items())
+    src = packet['ip'].src
+    dst = packet['ip'].dst
 
     for key, value in tcpflags.items():
         if value == '1':
             currflag.append(key)
 
     print(f'Packet {count}: {currflag}')
+    print(f'src: {src}')
+    print(f'dst: {dst}')
     count = count + 1
+    print()
