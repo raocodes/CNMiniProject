@@ -1,7 +1,7 @@
 import os
 import sys
 from Utils.createpacketinfo import createpacketinfo
-from Utils.allpacketinfo import printallpacketinfo
+from Utils.printinfo import printallpacketinfo, printflaginfo
 
 data = createpacketinfo()
 
@@ -15,7 +15,11 @@ while(1):
         print()
         printallpacketinfo(data)
     elif choice == '2':
-        pass
+        flag = input("Enter the TCP flag to display ('FIN', 'SYN', 'RST', 'PSH', 'ACK', 'URG'): ").upper()
+        if flag not in ['FIN', 'SYN', 'RST', 'PSH', 'ACK', 'URG']:
+            print('Please enter a valid flag!\n')
+            continue
+        printflaginfo(data, flag)
     elif choice == 'c':
         if os.name == 'nt':
             # Windows
