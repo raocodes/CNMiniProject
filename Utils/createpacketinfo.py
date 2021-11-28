@@ -3,7 +3,7 @@ import pyshark
 
 def createpacketinfo():
     cap = pyshark.FileCapture(
-        '200722_win_scale_examples_anon.pcapng', display_filter='tcp')
+        'testfiles/200722_win_scale_examples_anon.pcapng', display_filter='tcp')
 
     packetinfo = []
 
