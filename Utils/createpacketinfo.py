@@ -21,8 +21,8 @@ def createpacketinfo():
 
         src = packet['ip'].src
         dst = packet['ip'].dst
-        ack = packet['tcp'].ack
-        seq = packet['tcp'].seq
+        ack = int(packet['tcp'].ack)
+        seq = int(packet['tcp'].seq)
 
         for key, value in tcpflags.items():
             if value == '1':
