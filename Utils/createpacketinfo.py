@@ -21,13 +21,20 @@ def createpacketinfo():
 
         src = packet['ip'].src
         dst = packet['ip'].dst
+        ack = packet['tcp'].ack
+        seq = packet['tcp'].seq
 
         for key, value in tcpflags.items():
             if value == '1':
                 currflag.append(key)
 
         packetinfo.append(
-            {'count': count, 'flags': currflag, 'src': src, 'dst': dst})
+            {'count': count, 'flags': currflag, 'src': src, 'dst': dst, 'ack': ack, 'seq': seq})
         count = count + 1
 
     return packetinfo
+
+
+if __name__ == '__main__':
+    for packet in createpacketinfo():
+        print(packet)
