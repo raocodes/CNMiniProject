@@ -3,7 +3,9 @@ import sys
 from Utils.createpacketinfo import createpacketinfo
 from Utils.printinfo import printallpacketinfo, printflaginfo
 
-data = createpacketinfo()
+# testfiles/200722_win_scale_examples_anon.pcapng
+filename = input("Enter path of file to read: ")
+data = createpacketinfo(filename)
 
 while(1):
     print('1 - View information of all packets')
