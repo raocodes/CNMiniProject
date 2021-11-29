@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['driver.py'],
-             pathex=[],
+             pathex=['Utils/createpacketinfo.py', 'Utils/printinfo.py', 'venv32\Lib\site-packages\lxml', 'venv32\Lib\site-packages\pyshark'],
              binaries=[],
              datas=[],
              hiddenimports=[],
