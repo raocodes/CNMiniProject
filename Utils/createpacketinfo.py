@@ -22,18 +22,28 @@ def createpacketinfo(filename):
         dst = packet['ip'].dst
         ack = int(packet['tcp'].ack)
         seq = int(packet['tcp'].seq)
+        srcport = int(packet['tcp'].srcport)
+        dstport = int(packet['tcp'].dstport)
 
         for key, value in tcpflags.items():
             if value == '1':
                 currflag.append(key)
 
-        packetinfo.append(
-            {'count': count, 'flags': currflag, 'src': src, 'dst': dst, 'ack': ack, 'seq': seq})
+        packetinfo.append({
+            'count': count,
+            'flags': currflag,
+            'src': src,
+            'dst': dst,
+            'ack': ack,
+            'seq': seq,
+            'srcport': srcport,
+            'dstport': dstport
+        })
         count = count + 1
 
     return packetinfo
 
 
 if __name__ == '__main__':
-    for packet in createpacketinfo():
+    for packet in createpacketinfo('testfiles/200722_win_scale_examples_anon.pcapng'):
         print(packet)
