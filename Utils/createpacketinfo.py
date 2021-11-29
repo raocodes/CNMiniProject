@@ -41,6 +41,7 @@ def createpacketinfo(filename):
         })
         count = count + 1
 
+    cap.close()
     return packetinfo
 
 
