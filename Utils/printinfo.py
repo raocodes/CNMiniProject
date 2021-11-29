@@ -25,6 +25,9 @@ def printallpacketinfo(data):
                 if check['src'] == packet['src'] and check['dst'] == packet['dst'] and check['srcport'] == packet['srcport'] and check['dstport'] == packet['dstport']:
                     packettocheck.remove(check)
                     relevance = f"Connection between {packet['src']} and {packet['dst']} has been set up. The connection is ready for data transfer now."
+                    break
+            else:
+                relevance = message[packet['flags'][0]]
         else:
             relevance = message[packet['flags'][0]]
 
