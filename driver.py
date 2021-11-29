@@ -5,7 +5,7 @@ from Utils.printinfo import printallpacketinfo, printflaginfo
 
 try:
     # testfiles/200722_win_scale_examples_anon.pcapng
-    filename = input("Enter path of file to read: ")
+    filename = input("Enter path of file to read: ").strip()
     data = createpacketinfo(filename)
 
     while(1):
