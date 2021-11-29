@@ -1,5 +1,10 @@
 def printallpacketinfo(data):
+    packettocheck = list()
+
     for packet in data:
+        if 'SYN' in packet['flags'] and len(packet['flags']) == 1:
+            packettocheck.append(packet)
+
         message = {
             'SYN': f"Connection request from {packet['src']} to {packet['dst']}",
             'SYNACK': f"Connection request from {packet['dst']}is accepted and connection request to {packet['dst']} from {packet['src']}'s side is initiated.",
@@ -15,6 +20,11 @@ def printallpacketinfo(data):
             relevance = message['PSH'] + ' and ' + message['ACK'].lower()
         elif 'URG' in packet['flags'] and 'ACK' in packet['flags']:
             relevance = message['URG'] + ' and ' + message['ACK'].lower()
+        elif 'ACK' in packet['flags'] and len(packet['flags']) == 1:
+            for check in packettocheck:
+                if check['src'] == packet['src'] and check['dst'] == packet['dst'] and check['srcport'] == packet['srcport'] and check['dstport'] == packet['dstport']:
+                    packettocheck.remove(check)
+                    relevance = f"Connection between {packet['src']} and {packet['dst']} has been set up. The connection is ready for data transfer now."
         else:
             relevance = message[packet['flags'][0]]
 
