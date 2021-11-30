@@ -18,7 +18,8 @@ try:
             print()
             printallpacketinfo(data)
         elif choice == '2':
-            flag = input("Enter the TCP flag to display ('FIN', 'SYN', 'RST', 'PSH', 'ACK', 'URG'): ").upper()
+            flag = input(
+                "Enter the TCP flag to display ('FIN', 'SYN', 'RST', 'PSH', 'ACK', 'URG'): ").upper()
             if flag not in ['FIN', 'SYN', 'RST', 'PSH', 'ACK', 'URG']:
                 print('Please enter a valid flag!\n')
                 continue

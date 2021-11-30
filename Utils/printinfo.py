@@ -39,10 +39,22 @@ def printallpacketinfo(data):
         print(f"Flag relevance: {relevance}")
         print()
 
+
 def printflaginfo(data, flag):
-    count = 0
+    filtereddata = list()
     for packet in data:
         if flag in packet['flags']:
+            filtereddata.append(packet)
+    if len(filtereddata) == 0:
+        print('Flag not found in given wireshark output!')
+        print()
+    else:
+        print(
+            f'{round(((len(filtereddata)/len(data)) * 100), 2)}% of packets have this flag')
+        print()
+
+        count = 0
+        for packet in filtereddata:
             count = count + 1
             print(f"Packet {packet['count']}: {packet['flags']}")
             print(f"src: {packet['src']}")
@@ -50,6 +62,3 @@ def printflaginfo(data, flag):
             print(f"ack: {packet['ack']}")
             print(f"seq: {packet['seq']}")
             print()
-    if count == 0:
-        print('Flag not found in given wireshark output!')
-        print()
