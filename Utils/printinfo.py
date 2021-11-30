@@ -11,7 +11,7 @@ def printallpacketinfo(data):
             'PSH': 'Indicates that packet needs to be pushed up to application layer immediately in destination',
             'URG': 'Informs the transport layer of the receiving end that the data is urgent and it should be prioritized',
             'FIN': f"Connection closed from the {packet['src']}'s side",
-            'ACK': f"(First ACK packet from {packet['src']} to {packet['dst']}) Connection is set up. Acknowledges that message till {packet['ack'] - 1} is received, expecting {packet['ack']}"
+            'ACK': f"Acknowledges that message till {packet['ack'] - 1} is received, expecting {packet['ack']}"
         }
 
         if 'SYN' in packet['flags'] and 'ACK' in packet['flags']:
